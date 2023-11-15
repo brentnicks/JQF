@@ -341,8 +341,15 @@ public class AFLGuidance implements Guidance {
      * @param thread the thread whose events to handle
      * @return a callback to handle trace events
      */
+    // public Consumer<TraceEvent> generateCallBack(Thread thread) {
+    //     return this::handleEvent;
+    // }
     public Consumer<TraceEvent> generateCallBack(Thread thread) {
-        return this::handleEvent;
+        return (event) -> {
+        System.out.println(String.format("Thread %s produced an event %s",
+            thread.getName(), event));
+            this.handleEvent(event);
+        };
     }
 
     /**

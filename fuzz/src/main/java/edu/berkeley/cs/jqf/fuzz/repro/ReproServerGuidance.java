@@ -116,6 +116,11 @@ public class ReproServerGuidance implements Guidance {
 
     @Override
     public Consumer<TraceEvent> generateCallBack(Thread thread) {
-        return coverage::handleEvent;
+        //return coverage::handleEvent;
+        return (event) -> {
+        System.out.println(String.format("Thread %s produced an event %s",
+            thread.getName(), event));
+            coverage.handleEvent(event);
+        };
     }
 }

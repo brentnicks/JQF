@@ -1015,7 +1015,12 @@ public class ZestGuidance implements Guidance {
         } else if (firstThread != thread) {
             multiThreaded = true;
         }
-        return this::handleEvent;
+        //return this::handleEvent;
+        return (event) -> {
+        System.out.println(String.format("Thread %s produced an event %s",
+            thread.getName(), event));
+            this.handleEvent(event);
+        };
     }
 
     /**

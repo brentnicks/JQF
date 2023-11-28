@@ -296,8 +296,6 @@ public class ReproGuidance implements Guidance {
     public Consumer<TraceEvent> generateCallBack(Thread thread) {
         if (branchesCoveredInCurrentRun != null) {
             return (e) -> {
-                System.out.println(String.format("Thread %s produced an event %s",
-            thread.getName(), e));
                 coverage.handleEvent(e);
                 if (e instanceof BranchEvent) {
                     BranchEvent b = (BranchEvent) e;
@@ -328,8 +326,6 @@ public class ReproGuidance implements Guidance {
 
                 // Return an event logging callback
                 return (e) -> {
-                    System.out.println(String.format("Thread %s produced an event %s",
-            thread.getName(), e));
                     coverage.handleEvent(e);
                     out.println(e);
                 };
@@ -340,12 +336,7 @@ public class ReproGuidance implements Guidance {
         }
 
         // If none of the above work, just update coverage
-        //return coverage::handleEvent;
-        return (event) -> {
-        System.out.println(String.format("Thread %s produced an event %s",
-            thread.getName(), event));
-            coverage.handleEvent(event);
-        };
+        return coverage::handleEvent;
 
     }
 

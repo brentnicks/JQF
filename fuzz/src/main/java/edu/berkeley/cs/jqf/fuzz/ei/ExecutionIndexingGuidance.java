@@ -363,12 +363,7 @@ public class ExecutionIndexingGuidance extends ZestGuidance {
         entryPoint = SingleSnoop.entryPoints.get(thread).replace('.', '/');
         assert entryPoint != null : ExecutionIndexingGuidance.class + " must be able to determine an entry point";
 
-        //return this::handleEvent;
-        return (event) -> {
-        System.out.println(String.format("Thread %s produced an event %s",
-            thread.getName(), event));
-            this.handleEvent(event);
-        };
+        return this::handleEvent;
 
     }
 

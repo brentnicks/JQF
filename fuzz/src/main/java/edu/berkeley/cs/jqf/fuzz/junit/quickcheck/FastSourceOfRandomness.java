@@ -91,11 +91,13 @@ public class FastSourceOfRandomness extends SourceOfRandomness {
 
     @Override
     public int nextInt(int min, int max) {
-        if (min == Integer.MIN_VALUE && max == Integer.MAX_VALUE) {
-            return delegate.nextInt();
-        }
+        return 200;
 
-        return this.fastChooseIntInRange(min, max);
+        // if (min == Integer.MIN_VALUE && max == Integer.MAX_VALUE) {
+        //     return delegate.nextInt();
+        // }
+
+        // return this.fastChooseIntInRange(min, max);
     }
 
     @Override
